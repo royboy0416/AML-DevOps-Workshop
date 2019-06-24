@@ -11,7 +11,7 @@
 - 15:30-16:50 Dev environment setup: Use GitHub Desktop, Azure DevOps(create DevOps account, Organization), create from Azure ML template, customize Build Pipeline, customize Release Pipeline
 - 17:00-17:50 Questions and answers
 
-- **09:30-10:00 Workshop overview, scope, expectations
+- **09:30-10:00 Workshop overview, scope, expectations**
   - Process flow and architecture ([pdf](https://github.com/dem108/AMLWorkshop-IotEdge-DevOps/blob/master/doc/decks/Microsoft%20AI%20Architecture%20one-slider-EN-v20190513.pdf))
   - DevOps pipeline ([pdf](https://github.com/dem108/AMLWorkshop-IotEdge-DevOps/blob/master/doc/decks/DevOps-ML-IotEdge-pipeline-flow-v20190513.pdf))
 
@@ -63,8 +63,8 @@
 
 - **11:00-11:50 Train first DL model on Azure Notebooks using Azure ML Compute**
 
-    1. Open sample notebook `train-hyperparameter-tune-deploy-with-keras.ipynb` under `how-to-use-azureml/training-with-deep-learning/train-hyperparameter-tune-deploy-with-keras` (find [this notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/train-hyperparameter-tune-deploy-with-keras/train-hyperparameter-tune-deploy-with-keras.ipynb) from your notebook environment)
-    1. Run (before `run.wait_for_complettion()` cell)
+    1. Open sample notebook `1.train-hyperparameter-tune-deploy-with-keras-part1.ipynb` under `code` folder (find [this notebook](https://github.com/royboy0416/AML-DevOps-Workshop/blob/master/code/1.train-hyperparameter-tune-deploy-with-keras-part1.ipynb) from your notebook environment)
+    1. Run (before `run.wait_for_completion()` cell)
     1. Monitor the Jupyter widget, and the Workspace (from Azure Portal - check Experiment and Compute)
     1. Additionally, note that files in `./outputs` and `./logs` are automatically uploaded to the Workspace. Tensorboard logs should also be saved in this `./logs`. Refer to [how to train models](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-ml-models#single-node-training) and [TensorBoard integration sample](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/tensorboard/tensorboard.ipynb).
     1. Try to understand how the model files are moving, from AML Compute, to Workspace, to local environment.
@@ -72,17 +72,16 @@
         - Set `max_concurrent_job` parameter to the maximum number of nodes in your Azure ML Compute cluster.
         - Run, monitor the Jupyter widget and Azure Portal (AML service Workspace), evaluate the results
             > Note: Generally when you open the Notebook, you can see the last run results of the code cells, but Jupyter widget results are not shown. So in order to review last Widget run status without running the experiment again, you should find and load the run before using the widget. Sample notebook to do this is [here](https://github.com/dem108/AMLWorkshop-IotEdge-DevOps/blob/master/notebooks/Check-Jupyter-widget-for-a-specific-run.ipynb). 
-    1. Stop here. You may continue and deploy to ACI from this notebook, but we will cover deployment in the afternoon.
 
-- **13:00-14:50 Distributed training with Horovod on AML Compute, explore AML Workspace**
+- **13:00-14:20 Distributed training with Horovod on AML Compute, explore AML Workspace**
 
-    1. Open sample notebook `distributed-pytorch-with-horovod.ipynb` under `how-to-use-azureml/training-with-deep-learning/distributed-pytorch-with-horovod` (find [this notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/distributed-pytorch-with-horovod/distributed-pytorch-with-horovod.ipynb) from your notebook environment)
+    1. Open sample notebook `2.distributed-pytorch-with-horovod.ipynb` under `code` folder (find [this notebook](https://github.com/royboy0416/AML-DevOps-Workshop/blob/master/code/2.distributed-pytorch-with-horovod.ipynb) from your notebook environment)
     1. Run all: consider using 4 nodes when available instead of 2 as `node_count`.
     1. Questions and answers, or proceed to the next step.
 
-- **15:00-16:50 Create container images, deploy to Azure Container Instance (and/or Azure Kubernetes Service)**
+- **14:30-15:20 Create container images, deploy to Azure Container Instance (and/or Azure Kubernetes Service)**
 
-    1. We will continue from morning's sample, `train-hyperparameter-tune-deploy-with-keras.ipynb`. Open the notebook, and run the latter part, creating container image and deploying to ACI.
+    1. We will continue from morning's sample. Open sample notebook `3.train-hyperparameter-tune-deploy-with-keras-part2.ipynb`, and run creating container image and deploying to ACI.
     1. Explore Workspace from Azure Portal.
     1. Refresh the concepts of MLOps from [concept-model-management-and-deployment](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-model-management-and-deployment)
 
@@ -105,4 +104,45 @@
         - Run samples.
             - For Automated ML sample, set `max_concurrent_iterations` to the number of worker nodes.
 
-    * And check out [MLOps](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-model-management-and-deployment). This will be covered in Day 3, but will be good if we can get familiar with key concepts earlier.
+    * Check out [MLOps](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-model-management-and-deployment). 
+
+- **15:30-16:50 Dev environment setup: Use GitHub Desktop, Azure DevOps(create DevOps account, Organization), create from Azure ML template, customize Build Pipeline, customize Release Pipeline**
+
+    * Check out [MLOps](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-model-management-and-deployment). 
+
+    1. Create an Azure DevOps account from [DevOps start page](https://azure.microsoft.com/en-us/services/devops/?nav=min) - `Start Free`
+        What you also create is an `organization`. Note the organization name created.
+
+    1. We will use this quick starter - [Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/?name=azure%20machine%20learning)
+    
+        1. Alternative way to do this is [LearnAI_Azure_ML](https://github.com/Azure/LearnAI_Azure_ML/tree/master/devops), which helps you with step-by-step approach to create the pipeline from scratch. We will ***not*** use this in this workshop.
+
+    1. From the Demo Generator, choose the template, `Azure Machine Learning`. It's under `DevOps Labs` tab. Choose your `organization`, and specify the project name to create. 
+        ![](https://raw.githubusercontent.com/dem108/AMLWorkshop-IotEdge-DevOps/master/doc/images/devops-generator-01-create-with-azureml-template.jpg)
+        ![](https://raw.githubusercontent.com/dem108/AMLWorkshop-IotEdge-DevOps/master/doc/images/devops-generator-02-create-with-azureml-template.jpg)
+
+    1. Explore Repos
+        1. Edit config.json under aml_config. You can obtain the content for this file from AML service Workspace `Overview` from Azure Portal.
+        1. Notice that editing this file lets to commit it to master branch, which will initiate the Build Pipeline. It will fail and we'll fix the issue in the following steps.
+            - You can alternatively commit it to another branch, and merge it later into the master branch. A general git practice.
+
+        > Note: Instead of keeping sensitive files in Repo you could use `Secure File` feature from Azure Pipelines. A sample guidance is [here](https://github.com/Azure/LearnAI_Azure_ML/blob/master/devops/01-Build.ipynb). More details on Secure Files [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops).
+    1. Explore Pipelines
+    1. Edit Build Pipeline `DevOps-for-AI-CI`
+        1. Starting from `Create or Get Workspace`, specify the Azure subscription to use, and authorize.
+        1. Save and Queue.
+        1. Monitor the run, and fix any outstanding issues.
+
+        > Note: We are using Azure CLI Authentication now. Check out other ways to [authenticate](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azure-ml.ipynb).
+
+    1. Open `Deploy Webservice` Release Pipeline. Notice that releases were automatically initiated but failed.
+    
+    1. Click `Edit` for the Release Pipeline. Check out `Pre-deployment conditions`, and `Post-deployment conditions` for each stage.
+
+        1. In the `Prod - Deploy on AKS` stage, check out `Gates`. See what deployment gates can be added.
+
+        1. Click `1 job, 4 tasks` under `QA - Deploy on ACI` stage.
+
+        1. Specify Azure subscriptions to use for deployment and test.
+
+        1. Continue to the `Prod - Deploy on AKS` stage and do the same.
