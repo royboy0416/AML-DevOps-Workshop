@@ -11,6 +11,8 @@
 - 15:30-16:50 Dev environment setup: Use GitHub Desktop, Azure DevOps(create DevOps account, Organization), create from Azure ML template, customize Build Pipeline, customize Release Pipeline
 - 17:00-17:50 Questions and answers
 
+## ML Track
+
 - **09:30-10:00 Workshop overview, scope, expectations**
   - Process flow and architecture ([pdf](https://github.com/dem108/AMLWorkshop-IotEdge-DevOps/blob/master/doc/decks/Microsoft%20AI%20Architecture%20one-slider-EN-v20190513.pdf))
   - DevOps pipeline ([pdf](https://github.com/dem108/AMLWorkshop-IotEdge-DevOps/blob/master/doc/decks/DevOps-ML-IotEdge-pipeline-flow-v20190513.pdf))
@@ -105,6 +107,8 @@
             - For Automated ML sample, set `max_concurrent_iterations` to the number of worker nodes.
 
     * Check out [MLOps](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-model-management-and-deployment). 
+
+## DevOps Track
 
 - **15:30-16:50 Dev environment setup: Use GitHub Desktop, Azure DevOps(create DevOps account, Organization), create from Azure ML template, customize Build Pipeline, customize Release Pipeline**
 
